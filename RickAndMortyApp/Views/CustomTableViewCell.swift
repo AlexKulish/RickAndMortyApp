@@ -9,18 +9,30 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var characterImageView: UIImageView! {
+        didSet {
+            characterImageView.contentMode = .scaleAspectFit
+            characterImageView.clipsToBounds = true
+            characterImageView.layer.cornerRadius = characterImageView.frame.height / 2
+            characterImageView.backgroundColor = .white
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    
+    func configure(with character: Character?) {
+        guard let character = character else {
+            return
+        }
+        
+        nameLabel.text = character.name
+        
+        DispatchQueue.global().async {
+            guard let imageData = ImageManager.shared.fetchImage(from: character.image) else { return }
+            DispatchQueue.main.async {
+                self.characterImageView.image = UIImage(data: imageData)
+            }
+        }
     }
 
 }
