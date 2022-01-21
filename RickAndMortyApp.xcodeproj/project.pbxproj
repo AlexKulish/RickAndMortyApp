@@ -16,6 +16,7 @@
 		59FBFB5B279ACEBF005EA062 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FBFB5A279ACEBF005EA062 /* CustomTableViewCell.swift */; };
 		59FBFB5D279AD3DC005EA062 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FBFB5C279AD3DC005EA062 /* CharacterDetailsViewController.swift */; };
 		59FBFB5F279AE6B8005EA062 /* RickAndMorty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FBFB5E279AE6B8005EA062 /* RickAndMorty.swift */; };
+		59FBFB61279AECA9005EA062 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FBFB60279AECA9005EA062 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		59FBFB5A279ACEBF005EA062 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		59FBFB5C279AD3DC005EA062 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		59FBFB5E279AE6B8005EA062 /* RickAndMorty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMorty.swift; sourceTree = "<group>"; };
+		59FBFB60279AECA9005EA062 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		59FBFB51279AC7D3005EA062 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				59FBFB60279AECA9005EA062 /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				59FBFB5F279AE6B8005EA062 /* RickAndMorty.swift in Sources */,
 				59FBFB3A279AC6E1005EA062 /* AppDelegate.swift in Sources */,
 				59FBFB57279ACE65005EA062 /* CharacterTableViewController.swift in Sources */,
+				59FBFB61279AECA9005EA062 /* NetworkManager.swift in Sources */,
 				59FBFB5D279AD3DC005EA062 /* CharacterDetailsViewController.swift in Sources */,
 				59FBFB5B279ACEBF005EA062 /* CustomTableViewCell.swift in Sources */,
 				59FBFB3C279AC6E1005EA062 /* SceneDelegate.swift in Sources */,
