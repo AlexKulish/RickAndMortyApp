@@ -109,7 +109,13 @@
                             <constraint firstItem="kwa-BM-peh" firstAttribute="top" secondItem="CNC-ZQ-1gG" secondAttribute="bottom" constant="40" id="wSs-mV-XoE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xZX-Tn-0PQ"/>
+                    <navigationItem key="navigationItem" id="xZX-Tn-0PQ">
+                        <barButtonItem key="rightBarButtonItem" title="Episodes" id="Pbt-2b-aJ5">
+                            <connections>
+                                <segue destination="dq9-RU-sct" kind="presentation" id="gMw-ZF-LEJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="characterImageView" destination="CNC-ZQ-1gG" id="SzU-zk-QYA"/>
                         <outlet property="descriptionLabel" destination="kwa-BM-peh" id="g2F-2S-lhC"/>
@@ -118,6 +124,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmE-l2-0jG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="566" y="-42"/>
+        </scene>
+        <!--Episodes-->
+        <scene sceneID="zvb-Wv-hOp">
+            <objects>
+                <tableViewController id="Ns9-Jw-33K" customClass="EpisodesTableViewController" customModule="RickAndMortyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="V5S-kJ-xOb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="episode" textLabel="WT1-RQ-K7v" style="IBUITableViewCellStyleDefault" id="MdX-kO-0Pp">
+                                <rect key="frame" x="0.0" y="44.5" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MdX-kO-0Pp" id="EcP-mR-mJ5">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WT1-RQ-K7v">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ns9-Jw-33K" id="5ch-Y5-w6i"/>
+                            <outlet property="delegate" destination="Ns9-Jw-33K" id="a7P-BP-4c1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Episodes" id="9tf-q4-8n7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4dS-Mq-9zp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2030" y="-42"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ns1-L4-B7Q">
+            <objects>
+                <navigationController id="dq9-RU-sct" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iW6-bI-IwC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ns9-Jw-33K" kind="relationship" relationship="rootViewController" id="5wN-oq-AWs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EfU-Ie-3vh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1303" y="-42"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RuX-y7-i4H">

@@ -35,4 +35,11 @@ class CharacterDetailsViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let navigationVC = segue.destination as! UINavigationController
+        let episodeVC = navigationVC.topViewController as! EpisodesTableViewController
+        
+        episodeVC.character = character
+    }
 }

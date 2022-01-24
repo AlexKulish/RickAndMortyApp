@@ -68,6 +68,29 @@ class NetworkManager {
         }.resume()
     }
     
+    func fetchEpisode(from url: String?, with completion: @escaping(Result<Episode, NetworkError>) -> Void) {
+        guard let url = URL(string: url ?? "") else {
+            completion(.failure(.invalidUrl))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            
+            guard let data = data else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let dataEpisode = try JSONDecoder().decode(Episode.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(dataEpisode))
+                }
+            } catch {
+                completion(.failure(.decodingError))
+            }
+        }.resume()
+    }
 }
 
 class ImageManager {
