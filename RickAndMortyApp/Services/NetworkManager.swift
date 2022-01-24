@@ -21,33 +21,6 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     
-    func fetch<T: Decodable>(dataType: T.Type,
-                             from url: String,
-                             completion: @escaping(Result<T, NetworkError>) -> Void) {
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidUrl))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            
-            guard let data = data else {
-                completion(.failure(.noData))
-                print(error?.localizedDescription ?? "No description error")
-                return
-            }
-            
-            do {
-                let type = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(type))
-                }
-            } catch {
-                completion(.failure(.decodingError))
-            }
-        }.resume()
-    }
-    
     func fetchData(from url: String?, completion: @escaping(RickAndMorty) -> Void) {
         guard let url = URL(string: url ?? "") else { return }
         
@@ -75,7 +48,6 @@ class NetworkManager {
         }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
-            
             guard let data = data else {
                 completion(.failure(.noData))
                 return
@@ -88,6 +60,26 @@ class NetworkManager {
                 }
             } catch {
                 completion(.failure(.decodingError))
+            }
+        }.resume()
+    }
+    
+    func fetchCharacter(from url: String?, with completion: @escaping(Character) -> Void) {
+        
+        guard let url = URL(string: url ?? "") else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else { return }
+            
+            do {
+                let episodeData = try JSONDecoder().decode(Character.self, from: data)
+                DispatchQueue.main.async {
+                    completion(episodeData)
+                }
+            } catch {
+                print(error)
             }
         }.resume()
     }
