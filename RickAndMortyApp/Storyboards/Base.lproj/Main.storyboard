@@ -60,7 +60,18 @@
                             <outlet property="delegate" destination="Av0-gq-YXu" id="ADD-U0-gdV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="sDT-a9-BIi"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="sDT-a9-BIi">
+                        <barButtonItem key="leftBarButtonItem" title="Prev" id="ZFD-se-zKz">
+                            <connections>
+                                <action selector="updateData:" destination="Av0-gq-YXu" id="cLo-Bz-Huk"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" tag="1" title="Next" id="rqP-PJ-xFP">
+                            <connections>
+                                <action selector="updateData:" destination="Av0-gq-YXu" id="1Cp-Gt-w8H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bE-3Q-lLe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,8 +92,8 @@
                                     <constraint firstAttribute="height" constant="240" id="mdR-pm-DEA"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwa-BM-peh">
-                                <rect key="frame" x="16" y="349" width="343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwa-BM-peh">
+                                <rect key="frame" x="16" y="349" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -115,6 +126,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Sry-Cc-pd9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Av0-gq-YXu" kind="relationship" relationship="rootViewController" id="ojq-6Y-xH5"/>

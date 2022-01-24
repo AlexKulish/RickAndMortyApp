@@ -9,23 +9,22 @@ import UIKit
 
 class CharacterTableViewController: UITableViewController {
     
-//    private var rickAndMorty: RickAndMorty?
+    //MARK: - Private properties
+    private var rickAndMorty: RickAndMorty?
     private var characters: [Character] = []
-
+    
+    //MARK: - UIViewController Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = 70
         tableView.backgroundColor = .black
-        fetchData()
+        setupNavigationBar()
+        fetchData(from: Link.rickAndMortyApi.rawValue)
 
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         characters.count
@@ -41,28 +40,50 @@ class CharacterTableViewController: UITableViewController {
         return cell
     }
     
-    private func fetchData() {
-        NetworkManager.shared.fetch(dataType: RickAndMorty.self, from: Link.rickAndMortyApi.rawValue) { result in
-            
-            switch result {
-            case .success(let rickAndMorty):
-//                self.rickAndMorty = rickAndMorty
-                self.characters = rickAndMorty.results
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let characterDetailsVC = segue.destination as? CharacterDetailsViewController else { return }
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let character = characters[indexPath.row]
+        
+        characterDetailsVC.character = character
+        
+    }
+    
+    @IBAction func updateData(_ sender: UIBarButtonItem) {
+        sender.tag == 1
+        ? fetchData(from: rickAndMorty?.info.next)
+        : fetchData(from: rickAndMorty?.info.prev)
+    }
+    
+    
+    // MARK: - Private methods
+    
+    private func fetchData(from url: String?) {
+        NetworkManager.shared.fetchData(from: url) { rickAndMorty in
+            self.rickAndMorty = rickAndMorty
+            self.characters = rickAndMorty.results
+            self.tableView.reloadData()
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func setupNavigationBar() {
+        
+        title = "Rick & Morty"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        if #available(iOS 13.0, *) {
+            
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = .black
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+            
+        }
     }
-    */
-
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
+    // MARK: - IB Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var characterImageView: UIImageView! {
         didSet {
@@ -19,7 +20,7 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    
+    // MARK: - Public methods
     func configure(with character: Character?) {
         guard let character = character else {
             return

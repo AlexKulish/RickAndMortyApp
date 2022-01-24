@@ -47,6 +47,27 @@ class NetworkManager {
             }
         }.resume()
     }
+    
+    func fetchData(from url: String?, completion: @escaping(RickAndMorty) -> Void) {
+        guard let url = URL(string: url ?? "") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "No description error")
+                return
+            }
+            
+            do {
+                let rickAndMorty = try JSONDecoder().decode(RickAndMorty.self, from: data)
+                DispatchQueue.main.async {
+                    completion(rickAndMorty)
+                }
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
 }
 
 class ImageManager {
