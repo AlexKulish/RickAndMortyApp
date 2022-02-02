@@ -10,7 +10,7 @@ import UIKit
 class EpisodesTableViewController: UITableViewController {
     
     // MARK: - Public properties
-    var character: Character?
+    var character: Character!
     var episodes: [Episode] = []
     
     // MARK: - UIViewController methods
@@ -27,14 +27,14 @@ class EpisodesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        character?.episode.count ?? 0
+        character.episode.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "episode", for: indexPath)
 
         var content = cell.defaultContentConfiguration()
-        let episodeURL = character?.episode[indexPath.row]
+        let episodeURL = character.episode[indexPath.row]
         content.textProperties.color = .white
         content.textProperties.font = UIFont.boldSystemFont(ofSize: 18)
         NetworkManager.shared.fetchEpisode(from: episodeURL) { result in
